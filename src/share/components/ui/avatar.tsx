@@ -1,8 +1,8 @@
+import { cn } from "@/share/lib/utils";
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority";
-import color from "tinycolor2";
 import hash from "string-hash";
-import { cn } from "@/share/lib/utils";
+import color from "tinycolor2";
 
 const avatarStyles = cva("flex justify-center items-center rounded-full select-none shrink-0", {
   variants: {
