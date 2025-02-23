@@ -2,9 +2,9 @@ import { Welcome } from "../modules/welcome/welcome";
 import type { Route } from "./+types/home";
 
 export function meta({ data }: Route.MetaArgs) {
-  return [{ title: "Trang chủ" }, { name: "description", content: "Trang chủ" }];
+  return [{ title: "Tenant" }, { name: "description", content: "Tenant" }];
 }
 
-export default function Home() {
+export default function TenantPage() {
   return <Welcome />;
 }
