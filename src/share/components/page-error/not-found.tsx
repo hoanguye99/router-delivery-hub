@@ -1,12 +1,8 @@
-import Link from "next/link"
-import React from "react"
-import {
-  EmptyView,
-  EmptyViewDescription,
-  EmptyViewTitle,
-} from "../ui/empty-view"
-import { Button } from "../ui/button"
-import { ErrorIcon } from "../ui/icon"
+import React from "react";
+import { Button } from "../ui/button";
+import { Link } from "react-router";
+import { EmptyView, EmptyViewDescription, EmptyViewTitle } from "../ui/empty-view";
+import { ErrorIcon } from "../ui/icon";
 
 const NotFoundPage = () => {
   return (
@@ -18,13 +14,13 @@ const NotFoundPage = () => {
           Không tồn tại hoặc bạn không có quyền truy cập vào trang này!
         </EmptyViewDescription>
         <Button asChild size="lg">
-          <Link href="/" className="mt-8">
+          <Link to="/" className="mt-8">
             Quay về trang chủ
           </Link>
         </Button>
       </EmptyView>
     </div>
-  )
-}
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;

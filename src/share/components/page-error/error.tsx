@@ -1,9 +1,5 @@
-import {
-  EmptyView,
-  EmptyViewDescription,
-  EmptyViewTitle,
-} from "../ui/empty-view"
-import { ErrorIcon } from "../ui/icon"
+import { EmptyView, EmptyViewDescription, EmptyViewTitle } from "@/share/components/ui/empty-view";
+import { ErrorIcon } from "../ui/icon";
 
 const PageError = (props: { title?: string; discription?: string }) => {
   return (
@@ -14,7 +10,7 @@ const PageError = (props: { title?: string; discription?: string }) => {
         <EmptyViewDescription>{props.discription ?? ""}</EmptyViewDescription>
       </EmptyView>
     </>
-  )
-}
+  );
+};
 
-export default PageError
+export default PageError;
