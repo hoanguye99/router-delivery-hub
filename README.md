@@ -1,100 +1,216 @@
-# Welcome to React Router!
+# React Router Delivery Hub
 
-A modern, production-ready template for building full-stack React applications using React Router.
+## Requirement
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+**Package manager**: [Bun](https://bun.sh/docs) > v1.2.0
 
-## Features
+**Runtime**: [Node.js](https://nodejs.org/en) >= v20.0
 
-- 🚀 Client Side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-## Getting Started
-
-### Installation
+## Quick Start
 
 Install the dependencies:
 
 ```bash
-bun install
+bun  install
 ```
 
-### Development
-
-Start the development server with HMR:
+Set the environment variables:
 
 ```bash
-bun run dev
+cp  .env.example  .env
+
+# open .env and modify the environment variables (if needed)
 ```
 
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
+Run development environment:
 
 ```bash
-bun run build
+bun  run  dev
 ```
 
-## Deployment
-
-### Docker Deployment
-
-This template includes three Dockerfiles optimized for different package managers:
-
-- `Dockerfile` - for npm
-- `Dockerfile.pnpm` - for pnpm
-- `Dockerfile.bun` - for bun
-
-To build and run using Docker:
+Build and run production environment:
 
 ```bash
-# For npm
-docker build -t my-app .
+bun  run  build
 
-# For pnpm
-docker build -f Dockerfile.pnpm -t my-app .
-
-# For bun
-docker build -f Dockerfile.bun -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+bun  run  start
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+## Table of Contents
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
+- [Features](#features)
+- [Commands](#commands)
+- [Environment Variables](#environment-variables)
+- [Project Structure](#project-structure)
+- [Error Handling](#error-handling)
+- [Validation](#validation)
+- [Authentication](#authentication)
+- [Linting](#linting)
 
-### DIY Deployment
+## Features
 
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
+- **Bundler**: using [Vite](https://vite.dev/)
 
-Make sure to deploy the output of `npm run build`
+- **Styling & accessibility**: using [shadcn/ui](https://ui.shadcn.com/docs)
+
+- **Authentication and authorization**: custom using JWT accessToken and refreshToken
+
+- **Client State Management**: using [Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction)
+
+- **Server State Management**: using [Tanstack Query](https://tanstack.com/query/latest)
+
+- **Rest API Call**: using [axios](https://axios-http.com/docs/intro) and [axios]()
+
+- **Validation**: form validation & API response validation using [Valibot](https://valibot.dev/)
+
+- **Testing**: unit tests using [Playwright](https://playwright.dev/)
+
+- **Error handling**: centralized error handling mechanism
+-
+- **Docker support???**
+
+- **Git hooks**: with [husky](https://github.com/typicode/husky)
+
+- **Linting**: with [Biome](https://biomejs.dev/)
+
+## Commands
+
+Running locally:
+
+```bash
+bun  run  dev
+```
+
+Running in production:
+
+```bash
+bun  run  build
+
+bun  run  start
+```
+
+Testing:
+
+```bash
+# run all tests
+bun  run  test.unit.run
+
+# run test coverage
+bun  run  test.unit.coverage
+```
+
+Linting:
+
+```bash
+# run conc lint
+bun  run  lint
+
+# run madge lint
+bun  run  lint.circular
+
+# run biome lint
+bun  run  lint.biome
+
+# run typescript type check
+bun  run  lint.typecheck
+```
+
+## Environment Variables
+
+The environment variables can be found and modified in the `.env` file. They come with these default values:
+
+```bash
+PORT=3000
+
+NODE_ENV=development
+
+VITE_ENV=development
+
+VITE_BASE_API_URL=https://api.sampleapis.com
+
+VITE_HOST=http://localhost:3000
+
+VITE_COOKIE_DOMAIN=localhost
+
+VITE_APP_VERSION=0.0.1
+
+VITE_IS_E2E=0
 
 ```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+
+## Project Structure
+
+To be updated ...
+
+```
+src\
+|--config\ # Environment variables and configuration related things
+|--controllers\ # Route controllers (controller layer)
+|--docs\ # Swagger files
+|--middlewares\ # Custom express middlewares
+|--models\ # Mongoose models (data layer)
+|--routes\ # Routes
+|--services\ # Business logic (service layer)
+|--utils\ # Utility classes and functions
+|--validations\ # Request data validation schemas
+|--app.js # Express app
+|--index.js # App entry point
 ```
 
-## Styling
+## Error Handling
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+To be updated
 
----
+## Validation
 
-Built with ❤️ using React Router.
+To be updated
+
+## Authentication
+
+**Generating Access Tokens**:
+
+To be updated
+
+An access token can be generated by making a successful call to the register (`POST /v1/auth/register`) or login (`POST /v1/auth/login`) endpoints. The response of these endpoints also contains refresh tokens (explained below).
+
+An access token is valid for 30 minutes. You can modify this expiration time by changing the `JWT_ACCESS_EXPIRATION_MINUTES` environment variable in the .env file.
+
+**Refreshing Access Tokens**:
+
+After the access token expires, a new access token can be generated, by making a call to the refresh token endpoint (`POST /v1/auth/refresh-tokens`) and sending along a valid refresh token in the request body. This call returns a new access token and a new refresh token.
+
+A refresh token is valid for 30 days. You can modify this expiration time by changing the `JWT_REFRESH_EXPIRATION_DAYS` environment variable in the .env file.
+
+## Linting
+
+Linting is done using [ESLint](https://eslint.org/) and [Prettier](https://prettier.io).
+
+In this app, ESLint is configured to follow the [Airbnb JavaScript style guide](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base) with some modifications. It also extends [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) to turn off all rules that are unnecessary or might conflict with Prettier.
+
+To modify the ESLint configuration, update the `.eslintrc.json` file. To modify the Prettier configuration, update the `.prettierrc.json` file.
+
+To prevent a certain file or directory from being linted, add it to `.eslintignore` and `.prettierignore`.
+
+To maintain a consistent coding style across different IDEs, the project contains `.editorconfig`
+
+### Tech stack
+
+- Bundler: Vite
+
+- Integrate with API: [Tanstack Query](https://tanstack.com/query/latest/docs/framework/react/overview) + [Ky](https://github.com/sindresorhus/ky)
+
+- Validation: Use [Valibot](https://github.com/fabian-hiller/valibot) for validate all the form, schema and whatever we need to validate!
+
+### Developer Experiences
+
+- Use `techvify` CLI write in RUST to automate all the tasks we needs in this project
+
+- Use Git Workflow + Semantic commit + AI to have great commit + review code!
+
+- Spell checker will notified once there had typos
+
+- Have a lot of utilities collections like `react-use` and `@techvify/es-toolkit` for handling/transforming data
+
+- Testing - All feature have Unit + e2e testing(mocking DB)
+
+- Code Snippets say goodbye to the boilerplate
